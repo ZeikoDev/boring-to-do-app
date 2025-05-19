@@ -6,4 +6,7 @@ export type Todo = {
 
 export interface TodoListProps {
     todos: Todo[]
+    onRemoveTodo: (id: number) => void
 }
+
+

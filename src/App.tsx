@@ -1,28 +1,40 @@
 import { useState } from "react"
 import { Todos } from "./components/Todos"
+import type { Todo } from "./types"
 
 const mockData = [
   {
     id: 1,
-    title: 'todo 1',
-    completed: false,
-  },
-  {
-    id: 2,
-    title: 'todo 2',
+    title: 'Ts/js course',
     completed: true,
   },
   {
+    id: 2,
+    title: 'Sent application',
+    completed: false,
+  },
+  {
     id: 3,
-    title: 'todo 3',
+    title: 'Develop DK',
     completed: false,
   },
 ]
 
 const App = () => {
-  const [todos,] = useState(mockData)
+  const [todos, setTodos] = useState(mockData)
+
+  const handleDelete = (id: number) => {
+    const newTodos = todos.filter(todo => todo.id !== id)
+    setTodos(newTodos)
+  }
+
   return (
-    <Todos todos={todos} />
+    <div className="todoapp">
+      <Todos
+        todos={todos}
+        onRemoveTodo={handleDelete}
+      />
+    </div>
   )
 }
 
